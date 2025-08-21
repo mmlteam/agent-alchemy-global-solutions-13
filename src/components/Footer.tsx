@@ -18,7 +18,7 @@ const Footer = () => {
               </button>
             </PrivacyPolicyDialog>
             <span>•</span>
-            <span>© {currentYear} AI Automation. All rights reserved.</span>
+            <span>© {currentYear} ProAgentz. All rights reserved.</span>
           </div>
         </div>
       </div>
