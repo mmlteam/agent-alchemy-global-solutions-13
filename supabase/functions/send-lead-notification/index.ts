@@ -71,7 +71,7 @@ serve(async (req) => {
     )
 
     const emailPayload = {
-      from: 'hello@mmlprojects.in',
+      from: 'hello@proagentz.com',
       to: ['sharik@makemelive.in'],
       subject: `New Lead: ${name} - Free Automation Audit`,
       html: `
