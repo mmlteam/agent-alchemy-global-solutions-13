@@ -176,19 +176,7 @@ const LeadForm = () => {
     setIsSubmitting(true);
 
     try {
-      console.log('=== STEP 2 FORM SUBMISSION DEBUG ===');
-      console.log('Lead ID:', leadId);
-      console.log('Form data:', formData);
-      console.log('Update payload:', { 
-        email: formData.email, 
-        company_size: formData.companySize, 
-        challenge: formData.challenge,
-        step_completed: 2
-      });
-
       // Update the lead with complete information
-      console.log('About to execute update with leadId:', leadId, typeof leadId);
-      
       const { data: updateData, error: updateError } = await supabase
         .from('leads')
         .update({
@@ -198,10 +186,7 @@ const LeadForm = () => {
           step_completed: 2
         })
         .eq('id', leadId)
-        .select(); // Add select to see what was updated
-
-      console.log('Update result:', { data: updateData, error: updateError });
-      console.log('=== END DEBUG ===');
+        .select();
 
       if (updateError) {
         console.error('Error updating lead:', updateError);
