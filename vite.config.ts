@@ -29,7 +29,7 @@ export default defineConfig(({ mode }) => ({
   build: {
     // Performance optimizations
     target: 'esnext',
-    minify: 'terser',
+    minify: 'esbuild', // Use esbuild instead of terser for better compatibility
     sourcemap: false,
     rollupOptions: {
       output: {
@@ -46,14 +46,6 @@ export default defineConfig(({ mode }) => ({
         entryFileNames: 'assets/[name]-[hash].js',
         assetFileNames: 'assets/[name]-[hash].[ext]'
       }
-    },
-    // Enable compression
-    terserOptions: {
-      compress: {
-        drop_console: mode === 'production',
-        drop_debugger: mode === 'production',
-        pure_funcs: ['console.log', 'console.info'],
-      },
     },
     // Optimize CSS
     cssCodeSplit: true,
