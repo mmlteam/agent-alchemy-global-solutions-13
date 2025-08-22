@@ -12,7 +12,7 @@ const Header = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const number = "91XXXXXXXXXX"; // Replace with your WhatsApp number
+  const number = "919167352347"; // WhatsApp number
   const pageUrl = typeof window !== "undefined" ? window.location.href : "";
   const text = `Hi ProAgentz, I’m interested in AI automation. I’m on ${pageUrl}`;
   const waUrl = `https://wa.me/${number}?text=${encodeURIComponent(text)}`;
