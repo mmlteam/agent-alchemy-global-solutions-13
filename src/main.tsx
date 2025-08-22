@@ -10,18 +10,7 @@ const CriticalLoader = () => (
   </div>
 );
 
-// Preload critical resources
-const preloadCritical = () => {
-  // Preload hero image
-  const link = document.createElement('link');
-  link.rel = 'preload';
-  link.as = 'image';
-  link.href = '/src/assets/hero-ai-automation.jpg';
-  document.head.appendChild(link);
-};
-
-// Initialize performance optimizations
-preloadCritical();
+// Performance optimizations removed - using Spline 3D scene instead of hero image
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

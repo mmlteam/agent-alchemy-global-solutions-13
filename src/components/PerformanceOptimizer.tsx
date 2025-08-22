@@ -65,10 +65,6 @@ export const withPerformance = <T extends object>(
 
 // Critical resource preloader
 export const preloadCriticalResources = () => {
-  // Preload hero image
-  const heroImage = new Image();
-  heroImage.src = '/src/assets/hero-ai-automation.jpg';
-  
   // Preload fonts if using web fonts
   const link = document.createElement('link');
   link.rel = 'preload';

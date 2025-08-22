@@ -26,13 +26,9 @@ export const preloadImage = (src: string): Promise<void> => {
 
 // Critical resources preloader
 export const preloadCriticalResources = async () => {
-  const criticalImages = [
-    '/src/assets/hero-ai-automation.jpg'
-  ];
-
+  // No critical images to preload - using Spline 3D scene
   try {
-    await Promise.all(criticalImages.map(preloadImage));
-    console.log('Critical resources preloaded');
+    // Reserved for future critical resources
   } catch (error) {
     console.warn('Some critical resources failed to preload:', error);
   }
