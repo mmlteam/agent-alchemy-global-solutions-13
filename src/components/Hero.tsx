@@ -4,12 +4,14 @@ import { HeroIllustration } from "@/components/HeroIllustration";
 import { SpotlightCursor } from "@/components/ui/spotlight-cursor";
 import HeroFloatingParticles from "@/components/HeroFloatingParticles";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { useIsSafari } from "@/hooks/use-safari";
 const Hero = () => {
   const isMobile = useIsMobile();
+  const isSafari = useIsSafari();
   
   return <section className="bg-gradient-hero relative overflow-y-hidden pt-[15px]">
-      {/* Full Hero Spotlight Effect - Only on desktop */}
-      {!isMobile && <SpotlightCursor size={250} />}
+      {/* Full Hero Spotlight Effect - Only on desktop and not Safari */}
+      {!isMobile && !isSafari && <SpotlightCursor size={250} />}
       {/* Header with Logo */}
       
       {/* Animated background elements */}
