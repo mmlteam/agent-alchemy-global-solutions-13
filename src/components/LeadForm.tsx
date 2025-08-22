@@ -327,7 +327,7 @@ const LeadForm = () => {
             </div>
 
             {isFormCompleted ? (
-              <div className="text-center space-y-6 animate-fade-in">
+              <div id="thankyou-lead"className="text-center space-y-6 animate-fade-in">
                 <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto">
                   <CheckCircle className="w-8 h-8 text-white" />
                 </div>
