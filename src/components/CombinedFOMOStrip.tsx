@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, memo } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 
 const proofChips = [
   { value: "↑ 300%", label: "productivity" },
@@ -11,34 +12,22 @@ const proofChips = [
   { value: "₹48 cr", label: "saved" }
 ];
 
-const CombinedFOMOStrip = () => {
-  const [isVisible, setIsVisible] = useState(false);
+const CombinedFOMOStrip = memo(() => {
   const [shouldAnimate, setShouldAnimate] = useState(true);
+  const { ref, isVisible } = useIntersectionObserver({
+    threshold: 0.1, // Reduced for better mobile support
+    rootMargin: '100px', // Earlier triggering
+    fallbackTimeout: 3000 // Show content after 3s regardless
+  });
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    const element = document.getElementById('fomo-strip');
-    if (element) {
-      observer.observe(element);
-    }
-
     // Check for reduced motion preference
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     setShouldAnimate(!prefersReducedMotion);
-
-    return () => observer.disconnect();
   }, []);
 
   return (
-    <section id="fomo-strip" className="py-section bg-slate-800 text-white">
+    <section ref={ref} id="fomo-strip" className="py-section bg-slate-800 text-white">
       <div className="container mx-auto px-6">
         <div className="text-center space-y-8 animate-fade-in">
           {/* Headline */}
@@ -98,6 +87,8 @@ const CombinedFOMOStrip = () => {
       </div>
     </section>
   );
-};
+});
+
+CombinedFOMOStrip.displayName = 'CombinedFOMOStrip';
 
 export default CombinedFOMOStrip;

@@ -26,4 +26,55 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    // Performance optimizations
+    target: 'esnext',
+    minify: 'terser',
+    sourcemap: false,
+    rollupOptions: {
+      output: {
+        // Optimize chunking strategy
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          ui: ['@radix-ui/react-dialog', '@radix-ui/react-accordion', '@radix-ui/react-toast'],
+          utils: ['clsx', 'tailwind-merge', 'class-variance-authority'],
+          motion: ['framer-motion'],
+          spline: ['@splinetool/react-spline', '@splinetool/runtime']
+        },
+        // Optimize chunk file names for caching
+        chunkFileNames: 'assets/[name]-[hash].js',
+        entryFileNames: 'assets/[name]-[hash].js',
+        assetFileNames: 'assets/[name]-[hash].[ext]'
+      }
+    },
+    // Enable compression
+    terserOptions: {
+      compress: {
+        drop_console: mode === 'production',
+        drop_debugger: mode === 'production',
+        pure_funcs: ['console.log', 'console.info'],
+      },
+    },
+    // Optimize CSS
+    cssCodeSplit: true,
+    // Resource size limits
+    chunkSizeWarningLimit: 1000,
+    assetsInlineLimit: 4096
+  },
+  // Performance optimizations
+  optimizeDeps: {
+    include: [
+      'react',
+      'react-dom',
+      'framer-motion',
+      '@radix-ui/react-dialog',
+      '@radix-ui/react-accordion',
+      '@radix-ui/react-toast'
+    ],
+    exclude: ['@splinetool/react-spline']
+  },
+  // Enable CSS optimization
+  css: {
+    devSourcemap: mode === 'development'
+  }
 }));

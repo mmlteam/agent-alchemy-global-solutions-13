@@ -11,31 +11,70 @@
   background: linear-gradient(135deg, hsl(210 17% 8%) 0%, hsl(210 17% 12%) 50%, hsl(217 91% 8%) 100%);
 }
 
-/* Performance optimizations */
+/* Enhanced performance optimizations */
 * {
   box-sizing: border-box;
 }
 
 html {
   scroll-behavior: smooth;
+  /* Optimize font rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 img {
   max-width: 100%;
   height: auto;
+  /* Optimize image rendering */
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
 }
 
-/* Reduce layout shifts */
+/* Reduce layout shifts and enable containment */
 .container {
-  contain: layout style;
+  contain: layout style paint;
 }
 
-/* GPU acceleration for animations */
+/* Enhanced GPU acceleration for animations */
 .animate-fade-in,
 .animate-scale-in,
-.group:hover > * {
+.group:hover > *,
+.hover-scale,
+.animate-glow {
   will-change: transform, opacity;
   transform: translateZ(0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+/* Optimize critical rendering path */
+.critical-section {
+  contain: layout style paint;
+  content-visibility: auto;
+  contain-intrinsic-size: 0 400px;
+}
+
+/* Intersection observer optimization classes */
+.lazy-load {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease-out, transform 0.3s ease-out;
+}
+
+.lazy-load.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Preload hint for critical resources */
+.preload-hint {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* Preload critical fonts */

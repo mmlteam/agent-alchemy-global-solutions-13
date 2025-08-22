@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import { memo } from "react";
+import { useIntersectionObserver } from "@/hooks/useIntersectionObserver";
 
 const trackRecordStats = [
   { value: "10+", label: "yrs", description: "Automation experience" },
@@ -6,29 +7,15 @@ const trackRecordStats = [
   { value: "₹48", label: "cr", description: "client cost-savings" }
 ];
 
-const TrackRecord = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    const element = document.getElementById('track-record');
-    if (element) {
-      observer.observe(element);
-    }
-
-    return () => observer.disconnect();
-  }, []);
+const TrackRecord = memo(() => {
+  const { ref, isVisible } = useIntersectionObserver({
+    threshold: 0.1, // Reduced for better mobile support
+    rootMargin: '100px', // Earlier triggering
+    fallbackTimeout: 3000 // Show content after 3s regardless
+  });
 
   return (
-    <section id="track-record" className="py-16 bg-accent/5 border-y border-border/30">
+    <section ref={ref} id="track-record" className="py-16 bg-accent/5 border-y border-border/30">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto text-center">
           {trackRecordStats.map((stat, index) => (
@@ -60,6 +47,8 @@ const TrackRecord = () => {
       </div>
     </section>
   );
-};
+});
+
+TrackRecord.displayName = 'TrackRecord';
 
 export default TrackRecord;
