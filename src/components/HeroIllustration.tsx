@@ -1,4 +1,4 @@
-import { SplineScene } from '@/components/ui/splite'
+import { SplineScene } from '@/components/ui/spline-wrapper'
 
 export function HeroIllustration() {
   return (
