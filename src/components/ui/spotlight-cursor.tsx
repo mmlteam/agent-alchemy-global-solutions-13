@@ -30,7 +30,7 @@ export function SpotlightCursor({ size = 250 }: { size?: number }) {
   return (
     <motion.div
       ref={ref}
-      className="pointer-events-none absolute rounded-full bg-[radial-gradient(circle_at_center,white,transparent_75%)] blur-2xl transition-opacity duration-200"
+      className="pointer-events-none absolute rounded-full bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.9),transparent_75%)] blur-2xl transition-opacity duration-200"
       style={{ width: size, height: size, left, top, opacity: active ? 1 : 0 }}
     />
   )
