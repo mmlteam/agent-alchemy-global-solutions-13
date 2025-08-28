@@ -28,7 +28,7 @@ const SplineHero = () => {
             {/* Right content */}
             <div className="flex-1 relative">
               <SplineScene 
-                scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
+                scene="https://my.spline.design/nexbotrobotcharacterconcept-lxyssDLYhZWfKxQ3tq1L9yYc"
                 className="w-full h-full"
               />
             </div>
